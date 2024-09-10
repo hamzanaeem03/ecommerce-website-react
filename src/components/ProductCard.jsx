@@ -7,7 +7,7 @@ const ProductCard = ({ item }) => {
     <Link to={`/products/${id}`} className="lg:w-1/4 md:w-1/2 p-4 w-full rounded-md shadow">
         <img
           alt="ecommerce"
-          className="object-cover object-center w-full h-full block"
+          className="object-cover object-center w-full block"
           src={thumbnail}
         />
       <div className="mt-4">
