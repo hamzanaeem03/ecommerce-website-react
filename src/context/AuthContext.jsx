@@ -1,10 +1,10 @@
-import { createContext, useContext, useEffect, useState } from "react";
-import { auth } from "../../src/utils/firebase";
-import { div } from "framer-motion/client";
+import { createContext, useEffect, useState } from "react";
+import { auth } from "../utils/firebase";
 import { Spinner } from "@nextui-org/react";
 import { onAuthStateChanged } from "firebase/auth";
 
 export const AuthContext = createContext();
+// eslint-disable-next-line react/prop-types
 function AuthContextProvider({ children }) {
   const [user, setUser] = useState({
     isLogin: false,
@@ -14,17 +14,18 @@ function AuthContextProvider({ children }) {
 
   // Handle user state changes
   function onAuthChanged(user) {
-    if(user){
-console.log('user   =>', user)
-        setUser({isLogin: true, UserInfo:{
-            name : user?.displayName,
-            email: user?.email
-        }}); 
-    }else{
-        setUser({isLogin: false,UserInfo: {}}); 
-
+    if (user) {
+      setUser({
+        isLogin: true,
+        UserInfo: {
+          name: user?.displayName,
+          email: user?.email,
+        },
+      });
+    } else {
+      setUser({ isLogin: false, UserInfo: {} });
     }
-        setLoading(false);
+    setLoading(false);
   }
 
   useEffect(() => {
@@ -38,7 +39,7 @@ console.log('user   =>', user)
           <Spinner />{" "}
         </div>
       ) : (
-        { children }
+        children
       )}
     </AuthContext.Provider>
   );
